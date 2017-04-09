@@ -29,9 +29,22 @@ for (INIT ; COND ; COMMAND) BLOCK - This is a loop structure similar to C langua
 
 foreach VAR LIST - iterate over all LIST values and each iteration assign VAR to the next value from LIST
 
+	@fibonacci = (1, 1, 2, 3, 5, 8, 13, 21, 34, 55);
+	foreach $number (@fibonacci) {
+	  print "$number\n"
+	}
+
 do BLOCK while COND - repeat a statement BLOCK while COND is true. COND is tested after executing BLOCK
 
-Loop Control Statements
+	my $counter = 4;
+	my $factorial = 1;
+	print "factorial of $counter is ";
+	do {
+	  $factorial *= $counter--; # Multiply $factorial by $counter, then decrement $counter by 1.
+	} while ($counter > 0);
+	print "$factorial\n";
+
+### Loop Control Statements
 
 Loop control statements can be placed withing the loop's statement BLOCK. Wnen executed, these will alter the normal loop sequence. Some useful control statements are:
 
