@@ -108,19 +108,45 @@ For each given array @car_prices and @flight_prices in the tutorial code, calcul
 
 Tutorial Code
 -------------
-	@car_prices = (100, 250, 95, 1300, 4534, 102, 100, 97);
-	@flight_prices = (85.20, 79.99, 45.30, 130, 45.34, 110.25, 100, 917);
-	# define subroutines
-	sub min() {
-	}
-	sub max() {
-	}
-	# write code below
+    @car_prices = (100, 250, 95, 1300, 4534, 102, 100, 97);
+    @flight_prices = (85.20, 79.99, 45.30, 130, 45.34, 110.25, 100, 917);
+    # define subroutines
+    sub min {
+    }
+    sub max {
+    }
+    # write code below
 
 Expected Output
 ---------------
-	4439
-	871.7
+    4439
+    871.7
 
 Solution
 --------
+    @car_prices = (100, 250, 95, 1300, 4534, 102, 100, 97);
+    @flight_prices = (85.20, 79.99, 45.30, 130, 45.34, 110.25, 100, 917);
+    # define subroutines
+    sub min {
+        $minimum = @_[0];
+        foreach my $arg (@_){
+            if ($arg < $minimum){
+        	$minimum = $arg;
+            }
+        }
+        return ($minimum);
+    }
+    sub max {
+	$maximum = @_[0];
+        foreach my $arg (@_){
+    	    if ($arg > $maximum){
+    		$maximum = $arg;
+            }
+        }
+        return ($maximum);
+    }
+    # write code below
+    $car_price_range = max(@car_prices) - min(@car_prices);
+    $flight_price_range = max(@flight_prices) - min(@flight_prices);
+    print "$car_price_range\n";
+    print "$flight_price_range\n";
