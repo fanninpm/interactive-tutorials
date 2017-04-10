@@ -159,19 +159,33 @@ Follow these instructions and print the result after each step.
 
 Tutorial Code
 -------------
-	# code for instruction (1)
-	$a = 5;
-	print $a;
-	# continue with code for next steps below
+    # code for instruction (1)
+    $a = 5;
+    print "$a\n";
+    # continue with code for next steps below
 
 Expected Output
 ---------------
-	5
-	11
-	22
-	23
-	14
-	2
+    5
+    11
+    22
+    23
+    14
+    2
 
 Solution
 --------
+    # code for instruction (1)
+    $a = 5;
+    print "$a\n";
+    # continue with code for next steps below
+    $a += 6;
+    print "$a\n";
+    $a *= 2;
+    print "$a\n";
+    $a++;
+    print "$a\n";
+    $a -= 9;
+    print "$a\n";
+    $a /= 7;
+    print "$a\n";
