@@ -108,19 +108,19 @@ For each given array @car_prices and @flight_prices in the tutorial code, calcul
 
 Tutorial Code
 -------------
-	@car_prices = (100, 250, 95, 1300, 4534, 102, 100, 97);
-	@flight_prices = (85.20, 79.99, 45.30, 130, 45.34, 110.25, 100, 917);
-	# define subroutines
-	sub min() {
-	}
-	sub max() {
-	}
-	# write code below
+    @car_prices = (100, 250, 95, 1300, 4534, 102, 100, 97);
+    @flight_prices = (85.20, 79.99, 45.30, 130, 45.34, 110.25, 100, 917);
+    # define subroutines
+    sub min() {
+    }
+    sub max() {
+    }
+    # write code below
 
 Expected Output
 ---------------
-	4439
-	871.7
+    4439
+    871.7
 
 Solution
 --------
