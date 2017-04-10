@@ -3,25 +3,25 @@ Tutorial
 Regular expressions (regexp) are what makes Perl an ideal language for "practical extraction and reporting" as the name implies. 
 A regular expression is a string of characters that defines a text pattern or patterns. A regexp can be used in a number of ways:
 
-Search for a string that matches a specified patern and optionally replace the pattern found with some other strings.
+* Search for a string that matches a specified patern and optionally replace the pattern found with some other strings.
 
-Counting the number of occurances of a pattern in a string
+* Counting the number of occurances of a pattern in a string
 
-Split a formatted string (e.g. a date like 01/06/2014) into respective components (i.e. into day, month and year)
+* Split a formatted string (e.g. a date like 01/06/2014) into respective components (i.e. into day, month and year)
 
-Validating fields from a submitted HTML form by verifying if the data conforms to a particular format
+* Validating fields from a submitted HTML form by verifying if the data conforms to a particular format
 
 ### Matching a String Pattern
 
-Matching a string pattern is done by the m// operator and the =~ binding operator. The term:
+Matching a string pattern is done by the `m//` operator and the `=~` binding operator. The term:
 
-$string =~ m/$regexp/
+    $string =~ m/$regexp/
 
 Returns the TRUE value if the scalar $string matches the pattern defined by the value of the scalar $regexp
 
-The match operator supports its own set of optional modifiers, written after the m// operator. The modifiers are letters which indicate variations on the regexp processing. For example:
+The match operator supports its own set of optional modifiers, written after the `m//` operator. The modifiers are letters which indicate variations on the regexp processing. For example:
 
-$string =~ m/$regexp/i
+    $string =~ m/$regexp/i
 
 will make the match case insensitive.
 
@@ -37,36 +37,40 @@ will make the match case insensitive.
 	  print "No match found (case insensitive)\n"
 	}
 
-The m// can use any combination of naturally matching characters to act as delimiters for the expression. For example, m{}, m(), m|| are all valid.
+The `m//` can use any combination of naturally matching characters to act as delimiters for the expression. For example, `m{}`, `m()`, `m||` are all valid.
 
 
 ### Metacharacters
 
-Metacharacters serve specific purposes in a regular expression. If any of these metacharacters are to be embedded in the regular expression literally, you should quote them by prefixing it with a backslash (\), similar to the idea of escaping in double-quoted string.
+Metacharacters serve specific purposes in a regular expression. If any of these metacharacters are to be embedded in the regular expression literally, you should quote them by prefixing it with a backslash (`\`), similar to the idea of escaping in double-quoted string.
 
-\ Quote next character
-. Match any character except newline
-^ Match beginning-of-string
-$ Match end-of-string
-| separate between several possible patterns
-[] Character class
-() Grouping and save subpattern (backtracking)
+| Metacharacter   | Purpose                                      |
+|-----------------|----------------------------------------------|
+| `\`             | Quote next character                         |
+| `.`             | Match any character except newline           |
+| `^`             | Match beginning-of-string                    |
+| `$`             | Match end-of-string                          |
+| `\|`            | separate between several possible patterns   |
+| `[]`            | Character class                              |
+| `()`            | Grouping and save sub-pattern (backtracking) |
 
 For example
 
-m/google.com/ matches google.com and also googlexcom
-m/google\.com/ matches google.com but not googlexcom
-m/^google/ matches "google me" but not "please google me"
-m/google$/ matches "let's google" but not "let's google now" 
-m/^google$/ matches only "google"
-m/google|bing/ matches any pattern containing google or bing
-m/bob[ar6]/ matches any pattern containg boba or bobr or bob6
-m/bob[0-4]/ matches any pattern containg bob0 or bob1 or bob2 or bob3 or bob4
-m/bob[b-e]/ matches any pattern containg bobbcor bobc or bobd or bobe
+| Pattern           | Function                                                            |
+|-------------------|---------------------------------------------------------------------|
+| `m/google.com/`   | matches google.com and also googlexcom                              |
+| `m/google\.com/`  | matches google.com but not googlexcom                               |
+| `m/^google/`      | matches "google me" but not "please google me"                      |
+| `m/google$/`      | matches "let's google" but not "let's google now"                   |
+| `m/^google$/`     | matches only "google"                                               |
+| `m/google\|bing/` | matches any pattern containing "google" or "bing"                   |
+| `m/bob[ar6]/`     | matches any pattern containing boba or bobr or bob6                 |
+| `m/bob[0-4]/`     | matches any pattern containing bob0 or bob1 or bob2 or bob3 or bob4 |
+| `m/bob[b-e]/`     | matches any pattern containing bobb or bobc or bobd or bobe         |
 
 ### Replacing a String Pattern
 
-Replacing a matched text with some other test is done by the substitute operator s///. The basic form of the operator is:
+Replacing a matched text with some other test is done by the substitute operator `s///`. The basic form of the operator is:
 
 `s/REGEXP/REPLACEMENT/MODIFIER;`
 
@@ -81,15 +85,17 @@ The REGEXP is the regular expression for the text that we are looking for. The R
 	print "$y\n";
 
 Here is the list of some modifiers used with substitution operator:
-Modifier	Description
-i	Makes the match case insensitive
-o	Evaluates the expression only once
-g	Replaces all occurrences of the found expression with the replacement text
-e	Evaluates the replacement as if it were a Perl statement, and uses its return value as the replacement text
+
+| Modifier | Description                                                                                                 |
+|----------|-------------------------------------------------------------------------------------------------------------|
+| `i`      | Makes the match case-insensitive                                                                            |
+| `o`      | Evaluates the expression only once                                                                          |
+| `g`      | Replaces all occurrences of the found expression with the replacement text                                  |
+| `e`      | Evaluates the replacement as if it were a Perl statement, and uses its return value as the replacement text |
 
 ### Backtracking
 
-Parenthesised patterns have a useful property.  When pattern matching is successful, the matching substrings corresponding to the parenthesised parts are saved, which allow you to save them for further operations. The matched value of the first parenthesised pattern is refered to as $1, the second as $2 etc. For example:
+Parenthesised patterns have a useful property.  When pattern matching is successful, the matching substrings corresponding to the parenthesised parts are saved, which allow you to save them for further operations. The matched value of the first parenthesised pattern is refered to as `$1`, the second as `$2` etc. For example:
 
 	$number = "Telephone:   1234-5678";
 	if ($number =~ m/^Telephone:\s*(\d{4}-\d{4})$/) {
@@ -104,40 +110,41 @@ Parenthesised patterns have a useful property.  When pattern matching is success
 
 More complex reguar expressions allow matching to more than just fixed strings. Here's a list of patterns:
 
-Pattern	Description
-^	Matches beginning of line.
-$	Matches end of line.
-.	Matches any single character except newline. Using m option allows it to match newline as well.
-[...]	Matches any single character in brackets.
-[^...]	Matches any single character not in brackets
-*	Matches 0 or more occurrences of preceding expression.
-+	Matches 1 or more occurrence of preceding expression.
-?	Matches 0 or 1 occurrence of preceding expression.
-{ n}	Matches exactly n number of occurrences of preceding expression.
-{ n,}	Matches n or more occurrences of preceding expression.
-{ n, m}	Matches at least n and at most m occurrences of preceding expression.
-a|b	Matches either a or b.
-\w	Matches word characters.
-\W	Matches nonword characters.
-\s	Matches whitespace. Equivalent to [\t\n\r\f].
-\S	Matches nonwhitespace.
-\d	Matches digits. Equivalent to [0-9].
-\D	Matches nondigits.
-\A	Matches beginning of string.
-\Z	Matches end of string. If a newline exists, it matches just before newline.
-\z	Matches end of string.
-\G	Matches point where last match finished.
-\b	Matches word boundaries when outside brackets. Matches backspace (0x08) when inside brackets.
-\B	Matches nonword boundaries.
-\n, \t, etc.	Matches newlines, carriage returns, tabs, etc.
-\1...\9	Matches nth grouped subexpression.
-\10	Matches nth grouped subexpression if it matched already. Otherwise refers to the octal representation of a character code.
-[aeiou]	Matches a single character in the given set
-[^aeiou]	Matches a single character outside the given set
+| Pattern          | Description                                                                                                                |
+|------------------|----------------------------------------------------------------------------------------------------------------------------|
+| `^`              | Matches beginning of line.                                                                                                 |
+| `$`              | Matches end of line.                                                                                                       |
+| `.`              | Matches any single character except newline. Using m option allows it to match newline as well.                            |
+| `[...]`          | Matches any single character in brackets.                                                                                  |
+| `[^...]`         | Matches any single character not in brackets                                                                               |
+| `*`              | Matches 0 or more occurrences of preceding expression.                                                                     |
+| `+`              | Matches 1 or more occurrence of preceding expression.                                                                      |
+| `?`              | Matches 0 or 1 occurrence of preceding expression.                                                                         |
+| `{ n}`           | Matches exactly n number of occurrences of preceding expression.                                                           |
+| `{ n,}`          | Matches n or more occurrences of preceding expression.                                                                     |
+| `{ n, m}`        | Matches at least n and at most m occurrences of preceding expression.                                                      |
+| `a\|b`           | Matches either a or b.                                                                                                     |
+| `\w`             | Matches word characters.                                                                                                   |
+| `\W`             | Matches nonword characters.                                                                                                |
+| `\s`             | Matches whitespace. Equivalent to `[\t\n\r\f]`.                                                                            |
+| `\S`             | Matches nonwhitespace.                                                                                                     |
+| `\d`             | Matches digits. Equivalent to `[0-9]`.                                                                                     |
+| `\D`             | Matches nondigits.                                                                                                         |
+| `\A`             | Matches beginning of string.                                                                                               |
+| `\Z`             | Matches end of string. If a newline exists, it matches just before newline.                                                |
+| `\z`             | Matches end of string.                                                                                                     |
+| `\G`             | Matches point where last match finished.                                                                                   |
+| `\b`             | Matches word boundaries when outside brackets. Matches backspace (0x08) when inside brackets.                              |
+| `\B`             | Matches nonword boundaries.                                                                                                |
+| `\n`, `\t`, etc. | Matches newlines, carriage returns, tabs, etc.                                                                             |
+| `\1...\9`        | Matches nth grouped subexpression.                                                                                         |
+| `\10`            | Matches nth grouped subexpression if it matched already. Otherwise refers to the octal representation of a character code. |
+| `[aeiou]`        | Matches a single character in the given set                                                                                |
+| `[^aeiou]`       | Matches a single character outside the given set                                                                           |
 
 Exercise
 -------------
-You are given a scalar value $my_text. Assign the value of a regular expression to scalar $match_my_text to be used to match the string "express".
+You are given a scalar value `$my_text`. Assign the value of a regular expression to scalar `$match_my_text` to be used to match the string "express".
 
 Tutorial Code
 -------------
