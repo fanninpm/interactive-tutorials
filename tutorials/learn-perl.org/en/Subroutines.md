@@ -111,9 +111,9 @@ Tutorial Code
     @car_prices = (100, 250, 95, 1300, 4534, 102, 100, 97);
     @flight_prices = (85.20, 79.99, 45.30, 130, 45.34, 110.25, 100, 917);
     # define subroutines
-    sub min() {
+    sub min {
     }
-    sub max() {
+    sub max {
     }
     # write code below
 
