@@ -11,7 +11,7 @@ Split a formatted string (e.g. a date like 01/06/2014) into respective component
 
 Validating fields from a submitted HTML form by verifying if the data conforms to a particular format
 
-MATCHING A STRING PATTERN
+### Matching a String Pattern
 
 Matching a string pattern is done by the m// operator and the =~ binding operator. The term:
 
@@ -40,7 +40,7 @@ will make the match case insensitive.
 The m// can use any combination of naturally matching characters to act as delimiters for the expression. For example, m{}, m(), m|| are all valid.
 
 
-METACHARACTERS
+### Metacharacters
 
 Metacharacters serve specific purposes in a regular expression. If any of these metacharacters are to be embedded in the regular expression literally, you should quote them by prefixing it with a backslash (\), similar to the idea of escaping in double-quoted string.
 
@@ -64,11 +64,11 @@ m/bob[ar6]/ matches any pattern containg boba or bobr or bob6
 m/bob[0-4]/ matches any pattern containg bob0 or bob1 or bob2 or bob3 or bob4
 m/bob[b-e]/ matches any pattern containg bobbcor bobc or bobd or bobe
 
-REPLACING A STRING PATTERN
+### Replacing a String Pattern
 
 Replacing a matched text with some other test is done by the substitute operator s///. The basic form of the operator is:
 
-s/REGEXP/REPLACEMENT/MODIFIER;
+`s/REGEXP/REPLACEMENT/MODIFIER;`
 
 The REGEXP is the regular expression for the text that we are looking for. The REPLACEMENT is a specification for the text or regular expression that we want to use to replace the found text with. The MODIFIER is the optional substitute operator modifier letter.
 
@@ -87,7 +87,7 @@ o	Evaluates the expression only once
 g	Replaces all occurrences of the found expression with the replacement text
 e	Evaluates the replacement as if it were a Perl statement, and uses its return value as the replacement text
 
-BACKTRACKING
+### Backtracking
 
 Parenthesised patterns have a useful property.  When pattern matching is successful, the matching substrings corresponding to the parenthesised parts are saved, which allow you to save them for further operations. The matched value of the first parenthesised pattern is refered to as $1, the second as $2 etc. For example:
 
@@ -100,7 +100,7 @@ Parenthesised patterns have a useful property.  When pattern matching is success
 	  print "The year is $1, the month is $2, the day is $3\n";
 	}
 
-MORE COMPLEX REGULAR EXPRESSIONS
+### More Complex Regular Expressions
 
 More complex reguar expressions allow matching to more than just fixed strings. Here's a list of patterns:
 
