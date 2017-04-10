@@ -165,3 +165,14 @@ Match FOUND
 
 Solution
 --------
+````
+# Initialization
+$my_text = "You should try to use regular expressions while drinking an Espresso"; 
+# Matching text
+$match_my_text = "express";
+if ($my_text =~ m/$match_my_text/) {
+  print "Match FOUND\n";
+} else {
+  print "Match NOT FOUND - Incorrect REGEXP\n";
+}
+````
